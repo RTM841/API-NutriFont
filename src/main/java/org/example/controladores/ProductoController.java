@@ -8,6 +8,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.aspectj.bridge.Message;
+import org.example.entidades.Categoria;
 import org.example.entidades.Producto;
 import org.example.entidades.Supermercado;
 import org.example.servicios.ProdcutoService;
@@ -43,6 +44,27 @@ public class ProductoController {
     @GetMapping
     public List<Producto> list(){
         return prodcutoService.findAll();
+    }
+
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200",
+                    description = "Obtene el prodcuto, filtradas por el Id",
+                    content = { @Content(mediaType = "application/json",
+                            array = @ArraySchema(schema = @Schema(implementation = Producto.class)))}),
+
+            @ApiResponse(responseCode = "403",
+                    description = "Error cuando no se tiene permiso o se ejecutado mal el método",
+                    content = { @Content(mediaType = "application/json",
+                            array = @ArraySchema(schema = @Schema(implementation = Message.class)))})
+    })
+    @Operation(summary = "vista", description = "Devuelve una lista de las canciones por su id")
+    @GetMapping("/{id}")
+    public ResponseEntity<?> view(@PathVariable Long id){
+        Optional<Producto> productoOptional = prodcutoService.findById(id);
+        if(productoOptional.isPresent()){
+            return ResponseEntity.ok(productoOptional.orElseThrow());
+        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No se ha encontrado ninguna cancion con ese Id");
     }
 
     @ApiResponses(value = {

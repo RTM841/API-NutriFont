@@ -56,4 +56,7 @@ public class Usuario {
     @ManyToOne
     @JoinColumn(name = "supermercado_Id")
     private Supermercado supermercado;
+
+    @OneToMany(mappedBy = "usuario")
+    private List<Receta> recetas;
 }

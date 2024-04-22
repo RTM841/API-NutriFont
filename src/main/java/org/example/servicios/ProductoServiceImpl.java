@@ -21,6 +21,10 @@ public class ProductoServiceImpl implements ProdcutoService {
     @Transactional(readOnly = true)
     public List<Producto> findAll() {return productoRepository.findAll();}
 
+    @Override
+    @Transactional(readOnly = true)
+    public Optional<Producto> findById(Long id) {return productoRepository.findById(id);}
+
 
     @Override
     @Transactional
@@ -34,8 +38,8 @@ public class ProductoServiceImpl implements ProdcutoService {
         Optional <Producto> productoOptional = productoRepository.findById(id);
         if(productoOptional.isPresent()){
             Producto productoDb = productoOptional.orElseThrow();
-            productoDb.setCodigoBarras(productoDb.getCodigoBarras());
-            productoDb.setNombre(productoDb.getNombre());
+            productoDb.setCodigoBarras(producto.getCodigoBarras());
+            productoDb.setNombre(producto.getNombre());
             productoDb.setSupermercado(producto.getSupermercado());
             productoDb.setCategoria(producto.getCategoria());
             productoDb.setCalorias(producto.getCalorias());
@@ -62,6 +66,7 @@ public class ProductoServiceImpl implements ProdcutoService {
             productoDb.setSulfitos(producto.isSulfitos());
             productoDb.setAltramuces(producto.isAltramuces());
             productoDb.setMoluscos(producto.isMoluscos());
+            productoDb.setSupermercado(producto.getSupermercado());
             return Optional.of(productoRepository.save(productoDb));
         }
         return productoOptional;

@@ -12,6 +12,9 @@ public interface CategoriaService {
     //Buscar categoria
     List<Categoria> findAll();
 
+    //Buscar por ID
+    Optional<Categoria> findById(Long id);
+
     //Añadir categoria
     Categoria create (Categoria categoria);
 

@@ -1,6 +1,7 @@
 package org.example.servicios;
 
 
+import org.example.entidades.Producto;
 import org.example.entidades.Supermercado;
 import org.example.repositorios.SupermercadoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,10 @@ public class SupermercadoServiceImpl implements SupermercadoService {
     @Override
     @Transactional(readOnly = true)
     public List<Supermercado> findAll() {return supermercadoRepository.findAll();}
+
+    @Override
+    @Transactional(readOnly = true)
+    public Optional<Supermercado> findById(Long id) {return supermercadoRepository.findById(id);}
 
 
     @Override

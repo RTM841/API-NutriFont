@@ -45,6 +45,27 @@ public class CategoriaController {
 
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200",
+                    description = "Obtene la categoria, filtradas por el Id",
+                    content = { @Content(mediaType = "application/json",
+                            array = @ArraySchema(schema = @Schema(implementation = Categoria.class)))}),
+
+            @ApiResponse(responseCode = "403",
+                    description = "Error cuando no se tiene permiso o se ejecutado mal el método",
+                    content = { @Content(mediaType = "application/json",
+                            array = @ArraySchema(schema = @Schema(implementation = Message.class)))})
+    })
+    @Operation(summary = "vista", description = "Devuelve una lista de las canciones por su id")
+    @GetMapping("/{id}")
+    public ResponseEntity<?> view(@PathVariable Long id){
+        Optional<Categoria> categoriaOptional = categoriaService.findById(id);
+        if(categoriaOptional.isPresent()){
+            return ResponseEntity.ok(categoriaOptional.orElseThrow());
+        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No se ha encontrado ninguna cancion con ese Id");
+    }
+
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200",
                     description = "Se ha creado de forma correcta la categoria",
                     content = { @Content(mediaType = "application/json",
                             array = @ArraySchema(schema = @Schema(implementation = Categoria.class)))}),

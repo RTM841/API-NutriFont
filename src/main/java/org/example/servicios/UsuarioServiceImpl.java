@@ -86,6 +86,7 @@ public class UsuarioServiceImpl implements UsuarioService{
             Usuario usuarioDB = usuarioOptional.orElseThrow();
             usuarioDB.setNombre(usuario.getNombre());
             usuarioDB.setContrasenia(usuario.getContrasenia());
+            usuarioDB.setSupermercado(usuario.getSupermercado());
             return Optional.of(usuarioRepository.save(usuarioDB));
         }
         return usuarioOptional;

@@ -18,6 +18,10 @@ public class CategoriaServiceImpl implements CategoriaService {
     @Override
     @Transactional(readOnly = true)
     public List<Categoria> findAll() {return categoriaRepository.findAll();}
+    @Override
+    @Transactional(readOnly = true)
+    public Optional<Categoria> findById(Long id) {return categoriaRepository.findById(id);}
+
 
 
     @Override
