@@ -38,7 +38,7 @@ public class Usuario {
     @NotBlank
     private String contrasenia;
 
-    private boolean enabled;
+    private boolean enabled = true;
 
     @Transient
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)

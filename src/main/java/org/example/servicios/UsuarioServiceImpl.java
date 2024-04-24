@@ -46,7 +46,7 @@ public class UsuarioServiceImpl implements UsuarioService{
         List <Rol> roles = new ArrayList<>();
         optionalRoleUser.ifPresent(roles::add);
         if(usuario.isAdmin()){
-            Optional<Rol> optionalRoleAdmin = roleRepository.findByName("ROLE_ADMIN");
+            Optional<Rol> optionalRoleAdmin = roleRepository.findByName("ROLE_ADMINSUPERMERCADO");
             optionalRoleAdmin.ifPresent(roles::add);
         }
         usuario.setRoles(roles);
@@ -56,11 +56,11 @@ public class UsuarioServiceImpl implements UsuarioService{
     }
 
     @Transactional(readOnly = true)
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<Usuario> userOptional = usuarioRepository.findByUsername(username);
+    public UserDetails loadUserByNombre(String nombre) throws UsernameNotFoundException {
+        Optional<Usuario> userOptional = usuarioRepository.findByNombre(nombre);
 
         if(userOptional.isEmpty()){
-            throw new UsernameNotFoundException((String.format("Username %s no existe", username)));
+            throw new UsernameNotFoundException((String.format("Username %s no existe", nombre)));
         }
         Usuario usuario = userOptional.orElseThrow();
 

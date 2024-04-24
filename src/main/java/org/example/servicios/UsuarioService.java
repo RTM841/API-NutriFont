@@ -13,7 +13,7 @@ public interface UsuarioService {
 
     Usuario save(Usuario usuario);
 
-    UserDetails loadUserByUsername(String username);
+    UserDetails loadUserByNombre(String nombre);
 
     //Actualizar Usuario
     Optional<Usuario> update(Long id, Usuario usuario);

@@ -3,6 +3,7 @@ package org.example.entidades;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -31,7 +32,7 @@ public class Supermercado {
     private String direccion;
 
     @Schema(example = "639754546", description = "Es el número del supermercado")
-    @NotBlank
+    @NotNull
     private int telefono;
 
     @OneToMany(mappedBy = "supermercado")

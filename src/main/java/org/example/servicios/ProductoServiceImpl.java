@@ -38,7 +38,6 @@ public class ProductoServiceImpl implements ProdcutoService {
         Optional <Producto> productoOptional = productoRepository.findById(id);
         if(productoOptional.isPresent()){
             Producto productoDb = productoOptional.orElseThrow();
-            productoDb.setCodigoBarras(producto.getCodigoBarras());
             productoDb.setNombre(producto.getNombre());
             productoDb.setSupermercado(producto.getSupermercado());
             productoDb.setCategoria(producto.getCategoria());

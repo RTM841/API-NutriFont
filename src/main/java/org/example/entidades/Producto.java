@@ -3,6 +3,7 @@ package org.example.entidades;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -26,27 +27,27 @@ public class Producto {
     //Información del producto
 
     @Schema(example = "145", description = "Calorías del producto")
-    @NotBlank
+    @NotNull
     private double calorias;
 
     @Schema(example = "10", description = "Grasas saturadas del producto")
-    @NotBlank
+    @NotNull
     private double grasaSaturada;
 
     @Schema(example = "0,4", description = "Hidratos de Carbono del producto")
-    @NotBlank
+    @NotNull
     private double hidratos;
 
     @Schema(example = "0,3", description = "Azúcares del producto")
-    @NotBlank
+    @NotNull
     private double azucares;
 
     @Schema(example = "10", description = "Proteínas del producto")
-    @NotBlank
+    @NotNull
     private double proteinas;
 
     @Schema(example = "0,5", description = "Sal del prodcuto")
-    @NotBlank
+    @NotNull
     private double sal;
 
 
@@ -56,74 +57,74 @@ public class Producto {
     private String descripcion;
 
     @Schema(example = "True o False", description = "Si está disponible o el prodcuto o no")
-    @NotBlank
+    @NotNull
     private boolean disponibilidad;
 
 
     //Información sobre los alérgenos
 
     @Schema(example = "True o False", description = "Si lleva ese alérgeno o no")
-    @NotBlank
+    @NotNull
     private boolean gluten;
 
     @Schema(example = "True o False", description = "Si lleva ese alérgeno o no")
-    @NotBlank
+    @NotNull
     private boolean crustaceo;
 
     @Schema(example = "True o False", description = "Si lleva ese alérgeno o no")
-    @NotBlank
+    @NotNull
     private boolean huevo;
 
     @Schema(example = "True o False", description = "Si lleva ese alérgeno o no")
-    @NotBlank
+    @NotNull
     private boolean pescado;
 
     @Schema(example = "True o False", description = "Si lleva ese alérgeno o no")
-    @NotBlank
+    @NotNull
     private boolean cacahuetes;
 
     @Schema(example = "True o False", description = "Si lleva ese alérgeno o no")
-    @NotBlank
+    @NotNull
     private boolean soja;
 
     @Schema(example = "True o False", description = "Si lleva ese alérgeno o no")
-    @NotBlank
+    @NotNull
     private boolean leche;
 
     @Schema(example = "True o False", description = "Si lleva ese alérgeno o no")
-    @NotBlank
+    @NotNull
     private boolean proteinaLeche;
 
     @Schema(example = "True o False", description = "Si lleva ese alérgeno o no")
-    @NotBlank
+    @NotNull
     private boolean lactosa;
 
     @Schema(example = "True o False", description = "Si lleva ese alérgeno o no")
-    @NotBlank
+    @NotNull
     private boolean frutosCascara;
 
     @Schema(example = "True o False", description = "Si lleva ese alérgeno o no")
-    @NotBlank
+    @NotNull
     private boolean apio;
 
     @Schema(example = "True o False", description = "Si lleva ese alérgeno o no")
-    @NotBlank
+    @NotNull
     private boolean mostaza;
 
     @Schema(example = "True o False", description = "Si lleva ese alérgeno o no")
-    @NotBlank
+    @NotNull
     private boolean sesamo;
 
     @Schema(example = "True o False", description = "Si lleva ese alérgeno o no")
-    @NotBlank
+    @NotNull
     private boolean sulfitos;
 
     @Schema(example = "True o False", description = "Si lleva ese alérgeno o no")
-    @NotBlank
+    @NotNull
     private boolean altramuces;
 
     @Schema(example = "True o False", description = "Si lleva ese alérgeno o no")
-    @NotBlank
+    @NotNull
     private boolean moluscos;
 
     //Relaciones

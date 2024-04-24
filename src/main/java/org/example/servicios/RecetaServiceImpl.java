@@ -38,7 +38,6 @@ public class RecetaServiceImpl implements RecetaService {
         Optional <Receta> recetaOptional = recetaRepository.findById(id);
         if(recetaOptional.isPresent()){
             Receta recetaDb = recetaOptional.orElseThrow();
-            recetaDb.setId(receta.getId());
             recetaDb.setNomrbe(receta.getNomrbe());
             recetaDb.setDescripcion(receta.getDescripcion());
             recetaDb.setTiempoPreparacion(receta.getTiempoPreparacion());

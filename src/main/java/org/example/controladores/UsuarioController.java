@@ -126,11 +126,11 @@ public class UsuarioController {
                             array = @ArraySchema(schema = @Schema(implementation = Message.class)))})
     })
     @Operation(summary = "findUserByUsername", description = "Buscamos a un usuario para ver si existe mediante su nombre")
-    @GetMapping("/{username}")
-    public ResponseEntity<?> getUserByUsername(@PathVariable String username) {
+    @GetMapping("/{nombre}")
+    public ResponseEntity<?> getUserByUsername(@PathVariable String nombre) {
         UserDetails userDetails;
         try {
-            userDetails = usuarioService.loadUserByUsername(username);
+            userDetails = usuarioService.loadUserByNombre(nombre);
         } catch (UsernameNotFoundException e) {
             Map<String, String> errorResponse = new HashMap<>();
             errorResponse.put("error", e.getMessage());
