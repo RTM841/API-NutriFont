@@ -25,6 +25,10 @@ public class Categoria {
     @NotBlank
     private String nomrbe;
 
+    @Schema(example = "pescado", description = "Nombre de la categoría del producto")
+    @NotBlank
+    private String imgPath;
+
     @OneToMany(mappedBy = "categoria")
     private List<Producto> productos;
 }
