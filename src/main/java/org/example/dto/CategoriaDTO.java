@@ -18,7 +18,7 @@ import java.util.List;
 @NoArgsConstructor //Genera un constructor sin parámetros
 public class CategoriaDTO {
 
-    private String nomrbe;
+    private String nombre;
 
     private String imgPath;
 

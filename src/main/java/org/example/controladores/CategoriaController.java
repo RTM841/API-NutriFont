@@ -15,18 +15,35 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/api/categoria")
 @Tag(name = "categoria", description = "Este es el controlador de categoria , en el cual definimos las opreaciones básicas del CRUD")
 public class CategoriaController {
 
+    private List<Categoria> categorias = new ArrayList<>(Arrays.asList(
+            new Categoria(1,"pescado", "Pescado"),
+            new Categoria(2,"carne", "Carne"),
+            new Categoria(3,"fruta", "Fruta")
+    ));
+
+
+
+
     @Autowired
     private CategoriaService categoriaService;
 
-    @ApiResponses(value = {
+    @GetMapping()
+    public ResponseEntity<List<Categoria>> getAll(){
+        return ResponseEntity.ok(categorias);
+    }
+
+    /*@ApiResponses(value = {
             @ApiResponse(responseCode = "200",
                     description = "Obtene una lista de categorias",
                     content = { @Content(mediaType = "application/json",
@@ -41,7 +58,7 @@ public class CategoriaController {
     @GetMapping
     public List<Categoria> list(){
         return categoriaService.findAll();
-    }
+    }*/
 
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200",

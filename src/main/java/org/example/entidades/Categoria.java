@@ -23,7 +23,7 @@ public class Categoria {
 
     @Schema(example = "Pescado", description = "Nombre de la categoría del producto")
     @NotBlank
-    private String nomrbe;
+    private String nombre;
 
     @Schema(example = "pescado", description = "Nombre de la categoría del producto")
     @NotBlank
@@ -31,4 +31,10 @@ public class Categoria {
 
     @OneToMany(mappedBy = "categoria")
     private List<Producto> productos;
+
+    public Categoria(int id, String nomrbe, String imgPath) {
+        Id = id;
+        this.nombre = nomrbe;
+        this.imgPath = imgPath;
+    }
 }

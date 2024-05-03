@@ -37,7 +37,7 @@ public class CategoriaServiceImpl implements CategoriaService {
         if(categoriaOptional.isPresent()){
             Categoria categoriaDb = categoriaOptional.orElseThrow();
             categoriaDb.setId(categoria.getId());
-            categoriaDb.setNomrbe(categoria.getNomrbe());
+            categoriaDb.setNombre(categoria.getNombre());
             return Optional.of(categoriaRepository.save(categoriaDb));
         }
         return categoriaOptional;
