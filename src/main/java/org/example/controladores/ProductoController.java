@@ -22,6 +22,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/api/producto")
 @Tag(name = "producto", description = "Este es el controlador de producto , en el cual definimos las opreaciones básicas del CRUD")
 public class ProductoController {

@@ -24,6 +24,22 @@ public class Producto {
     @NotBlank
     private String nombre;
 
+    @Schema(example = "batido", description = "Nombre de la imgane del producto")
+    @NotBlank
+    private String imgPath;
+
+    @Schema(example = "Ingredientes: Leche de Avena(80%),Cacao(20%)", description = "Ingredientes del producto")
+    @NotBlank
+    private String descripcion;
+
+    @Schema(example = "Disponible o no", description = "Si está disponible o el prodcuto o no")
+    @NotNull
+    private String disponibilidad;
+
+    @Schema(example = "13,45", description = "Precio del producto")
+    @NotNull
+    private double precio;
+
     //Información del producto
 
     @Schema(example = "145", description = "Calorías del producto")
@@ -49,16 +65,6 @@ public class Producto {
     @Schema(example = "0,5", description = "Sal del prodcuto")
     @NotNull
     private double sal;
-
-
-
-    @Schema(example = "Ingredientes: Leche de Avena(80%),Cacao(20%)", description = "Ingredientes del producto")
-    @NotBlank
-    private String descripcion;
-
-    @Schema(example = "True o False", description = "Si está disponible o el prodcuto o no")
-    @NotNull
-    private boolean disponibilidad;
 
 
     //Información sobre los alérgenos

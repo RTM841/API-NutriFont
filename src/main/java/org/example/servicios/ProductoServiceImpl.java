@@ -48,7 +48,7 @@ public class ProductoServiceImpl implements ProdcutoService {
             productoDb.setProteinas(producto.getProteinas());
             productoDb.setSal(producto.getSal());
             productoDb.setDescripcion(producto.getDescripcion());
-            productoDb.setDisponibilidad(producto.isDisponibilidad());
+            productoDb.setDisponibilidad(producto.getDisponibilidad());
             productoDb.setGluten(producto.isGluten());
             productoDb.setCrustaceo(producto.isCrustaceo());
             productoDb.setHuevo(producto.isHuevo());
