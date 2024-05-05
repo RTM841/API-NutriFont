@@ -21,11 +21,11 @@ public class Categoria {
     @Schema(example = "1", description = "Es el identificador de la categoría")
     private int Id;
 
-    @Schema(example = "Pescado", description = "Nombre de la categoría del producto")
+    @Schema(example = "Pescado", description = "Nombre de la categoría de la categoria")
     @NotBlank
     private String nombre;
 
-    @Schema(example = "pescado", description = "Nombre de la categoría del producto")
+    @Schema(example = "pescado", description = "Nombre de la imgane de la categoria")
     @NotBlank
     private String imgPath;
 
