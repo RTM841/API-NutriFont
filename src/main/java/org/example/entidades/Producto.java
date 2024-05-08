@@ -36,10 +36,10 @@ public class Producto {
     @NotNull
     private String disponibilidad;
 
-    @Schema(example = "13,45", description = "Precio del producto")
+    @Schema(example = "13,45€ o 4,50€/Kg", description = "Precio del producto")
     @NotNull
     private double precio;
-
+    
     //Información del producto
 
     @Schema(example = "145", description = "Calorías del producto")
