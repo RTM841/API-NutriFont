@@ -7,8 +7,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Entity
 @Table(name = "receta")
 @Data //Genera lo getter and setter
@@ -23,7 +21,7 @@ public class Receta {
 
     @Schema(example = "Rissoto", description = "Nombre de la receta")
     @NotBlank
-    private String nomrbe;
+    private String nombre;
 
     @Schema(example = "2 Vasos de Agua, 1 Paquete de Queso, 450g de Arroz, Sal, Pimienta, 200g de Champioñones ", description = "Recursos de la receta")
     @NotBlank

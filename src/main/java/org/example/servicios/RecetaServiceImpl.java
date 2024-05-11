@@ -1,13 +1,11 @@
 package org.example.servicios;
 
-import org.example.entidades.Producto;
 import org.example.entidades.Receta;
 import org.example.repositorios.RecetaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.lang.model.element.RecordComponentElement;
 import java.util.List;
 import java.util.Optional;
 
@@ -38,7 +36,7 @@ public class RecetaServiceImpl implements RecetaService {
         Optional <Receta> recetaOptional = recetaRepository.findById(id);
         if(recetaOptional.isPresent()){
             Receta recetaDb = recetaOptional.orElseThrow();
-            recetaDb.setNomrbe(receta.getNomrbe());
+            recetaDb.setNombre(receta.getNombre());
             recetaDb.setDescripcion(receta.getDescripcion());
             recetaDb.setTiempoPreparacion(receta.getTiempoPreparacion());
             recetaDb.setValoracion(receta.getValoracion());

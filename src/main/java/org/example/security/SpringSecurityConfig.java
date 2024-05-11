@@ -58,8 +58,8 @@ public class SpringSecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/api/producto").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/producto/{id}").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/producto").permitAll()
-                        .requestMatchers(HttpMethod.PUT, "/api/producto/{id}").hasAnyRole("ADMINSUPERMERCADO","SUPERADMIN")
-                        .requestMatchers(HttpMethod.DELETE, "/api/producto/{id}").hasAnyRole("ADMINSUPERMERCADO","SUPERADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/api/producto/{id}").permitAll()
+                        .requestMatchers(HttpMethod.DELETE, "/api/producto/{id}").permitAll()
                         //Permisos Receta.
                         .requestMatchers(HttpMethod.GET, "/api/receta").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/receta/{id}").permitAll()
