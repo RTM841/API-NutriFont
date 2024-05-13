@@ -63,9 +63,9 @@ public class SpringSecurityConfig {
                         //Permisos Receta.
                         .requestMatchers(HttpMethod.GET, "/api/receta").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/receta/{id}").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/api/receta").hasAnyRole("USER","ADMINSUPERMERCADO","SUPERADMIN")
-                        .requestMatchers(HttpMethod.PUT, "/api/receta/{id}").hasAnyRole("ADMINSUPERMERCADO","SUPERADMIN")
-                        .requestMatchers(HttpMethod.DELETE, "/api/receta/{id}").hasAnyRole("ADMINSUPERMERCADO","SUPERADMIN")
+                        .requestMatchers(HttpMethod.POST, "/api/receta").permitAll()
+                        .requestMatchers(HttpMethod.PUT, "/api/receta/{id}").permitAll()
+                        .requestMatchers(HttpMethod.DELETE, "/api/receta/{id}").permitAll()
                         .anyRequest().authenticated())
                 .addFilter(new JwtAuthenticationFilter(authenticationManager()))
                 .addFilter(new JwtValidationFilter(authenticationManager()))
