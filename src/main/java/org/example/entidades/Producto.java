@@ -17,7 +17,7 @@ public class Producto {
 
     @Id
     @Schema(example = "1", description = "Es el identificador del prodcuto, es el código resultante del escaneo")
-    private int codigoBarras;
+    private Long codigoBarras;
 
 
     @Schema(example = "Batido Avena Chocolate 250ml", description = "Nombre del producto")
