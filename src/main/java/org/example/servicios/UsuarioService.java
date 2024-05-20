@@ -21,5 +21,9 @@ public interface UsuarioService {
     //Borrar cancion
     Optional<Usuario> delete(Long id);
 
+    String getRoleNamesByUserId(int userId);
+
+
+
 }
 

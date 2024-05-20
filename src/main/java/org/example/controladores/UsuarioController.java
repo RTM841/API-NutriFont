@@ -194,5 +194,9 @@ public class UsuarioController {
     }
 
 
+    @GetMapping("/{userId}/roles")
+    public String getRoleNamesByUserId(@PathVariable int userId) {
+        return usuarioService.getRoleNamesByUserId(userId);
+    }
 
 }

@@ -98,4 +98,8 @@ public class UsuarioServiceImpl implements UsuarioService{
         usuarioOptional.ifPresent( usuarioDb -> usuarioRepository.delete(usuarioDb));
         return usuarioOptional;
     }
+
+    public String getRoleNamesByUserId(int userId) {
+        return usuarioRepository.findRoleNamesByUserId(userId);
+    }
 }
