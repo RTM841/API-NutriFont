@@ -102,4 +102,8 @@ public class UsuarioServiceImpl implements UsuarioService{
     public String getRoleNamesByUserId(int userId) {
         return usuarioRepository.findRoleNamesByUserId(userId);
     }
+
+    public Optional<Usuario> findByNombre(String nombre){
+        return usuarioRepository.findByNombre(nombre);
+    };
 }

@@ -11,29 +11,36 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.example.entidades.Usuario;
+import org.example.repositorios.UsuarioRepository;
+import org.example.servicios.UsuarioService;
+import org.example.servicios.UsuarioServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import java.io.IOException;
-import java.util.Collection;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 import static org.example.security.TokenJwtConfig.*;
 
 
 public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
-private AuthenticationManager authenticationManager;
+    private AuthenticationManager authenticationManager;
 
-public JwtAuthenticationFilter(AuthenticationManager authenticationManager){
-    this.authenticationManager = authenticationManager;
-}
+
+    int id;
+
+
+    public JwtAuthenticationFilter(AuthenticationManager authenticationManager){
+        this.authenticationManager = authenticationManager;
+    }
 
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response)
@@ -47,6 +54,7 @@ public JwtAuthenticationFilter(AuthenticationManager authenticationManager){
             usuario = new ObjectMapper().readValue(request.getInputStream(), Usuario.class);
             username = usuario.getNombre();
             password = usuario.getContrasenia();
+            id = usuario.getId();
         } catch (StreamReadException e) {
             e.printStackTrace();
         } catch (DatabindException e) {
@@ -65,9 +73,11 @@ public JwtAuthenticationFilter(AuthenticationManager authenticationManager){
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain,
                                             Authentication authResult) throws IOException, ServletException {
 
-        org.springframework.security.core.userdetails.User user = (org.springframework.security.core.userdetails.User) authResult.getPrincipal();
+        User user = (User) authResult.getPrincipal();
         String username = user.getUsername();
+
         Collection<? extends GrantedAuthority> roles = authResult.getAuthorities();
+
 
         Claims claims = Jwts.claims()
                 .add("authorities", new ObjectMapper().writeValueAsString(roles))
@@ -85,14 +95,25 @@ public JwtAuthenticationFilter(AuthenticationManager authenticationManager){
 
         response.addHeader(HEADER_AUTHORIZATION, PREFIX_TOKEN + token);
 
+        Object[] listaRoles = roles.toArray();
+        String rol = listaRoles[0].toString();
+
         Map<String, String> body = new HashMap<>();
         body.put("token", token);
         body.put("username", username);
+        body.put("rol", rol);
         body.put("message", String.format("Hola %s has iniciado sesion con exito!", username));
 
         response.getWriter().write(new ObjectMapper().writeValueAsString(body));
         response.setContentType(APPLICATION);
         response.setStatus(200);
+
+
+
+       //Optional<Usuario> usuario = usuarioService.findByNombre(username);
+        //Usuario usuario2 = usuario.get();
+        //usuario2.getId();
+        //System.out.println(roles.stream().findFirst());
     }
 
     @Override
@@ -106,5 +127,7 @@ public JwtAuthenticationFilter(AuthenticationManager authenticationManager){
         response.setStatus(401);
         response.setContentType(APPLICATION);
     }
+
+
 
 }

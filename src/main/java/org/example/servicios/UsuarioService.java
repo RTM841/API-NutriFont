@@ -23,6 +23,8 @@ public interface UsuarioService {
 
     String getRoleNamesByUserId(int userId);
 
+    Optional<Usuario> findByNombre(String nombre);
+
 
 
 }
