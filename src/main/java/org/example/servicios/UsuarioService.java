@@ -4,6 +4,7 @@ package org.example.servicios;
 import org.example.entidades.Usuario;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,9 +24,7 @@ public interface UsuarioService {
 
     String getRoleNamesByUserId(int userId);
 
-    Optional<Usuario> findByNombre(String nombre);
-
-
+    List<String> findAllCorreos();
 
 }
 

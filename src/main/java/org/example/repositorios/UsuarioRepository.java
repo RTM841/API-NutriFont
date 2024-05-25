@@ -7,6 +7,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -19,6 +21,9 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
             "JOIN rol r ON ur.rol_id = r.id " +
             "WHERE u.id = :userId", nativeQuery = true)
     String findRoleNamesByUserId(@Param("userId") int userId);
+
+    @Query(value = "SELECT correo FROM Usuario", nativeQuery = true)
+    List<String> findAllCorreos();
 
 
 }

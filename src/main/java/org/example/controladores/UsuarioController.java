@@ -21,10 +21,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 @RestController
 @RequestMapping("/api/users")
@@ -197,6 +194,11 @@ public class UsuarioController {
     @GetMapping("/{userId}/roles")
     public String getRoleNamesByUserId(@PathVariable int userId) {
         return usuarioService.getRoleNamesByUserId(userId);
+    }
+
+    @GetMapping("/obt/correos")
+    public List<String> getCorreos(){
+        return usuarioService.findAllCorreos();
     }
 
 }

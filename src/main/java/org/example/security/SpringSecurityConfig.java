@@ -39,12 +39,14 @@ public class SpringSecurityConfig {
                         //Permirsos de roles y usuarios.
                         .requestMatchers(HttpMethod.GET, "/api/users").hasRole("SUPERADMIN")
                         .requestMatchers(HttpMethod.GET, "/api/users/{username}").hasRole("SUPERADMIN")
+                        .requestMatchers(HttpMethod.GET, "/api/users/obt/correos").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/users/{userId}/roles").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/users/register").permitAll()
                         .requestMatchers(HttpMethod.PUT, "/api/users/{id}").hasRole("SUPERADMIN")
                         .requestMatchers(HttpMethod.DELETE, "/api/users/{id}").hasRole("SUPERADMIN")
                         //Permisos de Categoria.
                         .requestMatchers(HttpMethod.GET, "/api/categoria").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/api/users/{id}").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/categoria/{id}").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/categoria").hasAnyRole("ADMINSUPERMERCADO","SUPERADMIN")
                         .requestMatchers(HttpMethod.PUT, "/api/categoria/{id}").hasAnyRole("ADMINSUPERMERCADO","SUPERADMIN")
                         .requestMatchers(HttpMethod.DELETE, "/api/categoria/{id}").hasAnyRole("ADMINSUPERMERCADO","SUPERADMIN")

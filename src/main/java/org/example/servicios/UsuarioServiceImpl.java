@@ -103,7 +103,10 @@ public class UsuarioServiceImpl implements UsuarioService{
         return usuarioRepository.findRoleNamesByUserId(userId);
     }
 
-    public Optional<Usuario> findByNombre(String nombre){
-        return usuarioRepository.findByNombre(nombre);
-    };
+    @Override
+    public List<String> findAllCorreos() {
+        return usuarioRepository.findAllCorreos();
+    }
+
+
 }
