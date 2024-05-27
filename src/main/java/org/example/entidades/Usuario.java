@@ -39,6 +39,8 @@ public class Usuario {
     @NotBlank
     private String contrasenia;
 
+    //pfag izkt epbu mpxc
+
     @Schema(example = "123456", description = "Codigo que se utiliza para verificar al usuario")
     @NotBlank
     private String codigo_verificacion;

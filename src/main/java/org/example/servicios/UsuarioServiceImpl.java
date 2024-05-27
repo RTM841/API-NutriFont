@@ -34,6 +34,7 @@ public class UsuarioServiceImpl implements UsuarioService{
     @Autowired
     PasswordEncoder passwordEncoder;
 
+
     @Autowired
     JavaMailSender mailSender;
 
@@ -119,9 +120,9 @@ public class UsuarioServiceImpl implements UsuarioService{
         user.setCodigo_verificacion(verificationCode); // Guarda el código en el objeto User
 
         SimpleMailMessage message = new SimpleMailMessage();
-        message.setTo(user.getCorreo());
+        message.setTo(user.getCorreo().toString());
         message.setSubject("Código de verificación para " + "NutriFont");
-        message.setText("Hola " + user.getNombre() + ",\n\n" +
+        message.setText("Hola " + user.getNombre().toString() + ",\n\n" +
                 "Tu código de verificación para completar tu registro en " + "NutriFont" + " es:\n\n" +
                 verificationCode + "\n\n" +
                 "Este código es válido por 5 minutos.\n\n" +
