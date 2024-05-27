@@ -87,6 +87,7 @@ public class UsuarioController {
     @Operation(summary = "resgister", description = "Para resgitrar a un usuario")
     @PostMapping("/register")
     public ResponseEntity<?> register(@Valid @RequestBody Usuario usuario, BindingResult result){
+        usuarioService.sendVerificationEmail(usuario);
         return create(usuario, result);
     }
 
@@ -199,6 +200,17 @@ public class UsuarioController {
     @GetMapping("/obt/correos")
     public List<String> getCorreos(){
         return usuarioService.findAllCorreos();
+    }
+
+    @PostMapping("/verificar-cuenta")
+    public ResponseEntity<?> verificarCuenta(@RequestBody Usuario usuario, String codigoIngresado) {
+        boolean verified = usuarioService.verifyUser(usuario, codigoIngresado);
+
+        if (verified) {
+            return ResponseEntity.ok().body(usuario);
+        } else {
+            return ResponseEntity.badRequest().body("Código de verificación incorrecto");
+        }
     }
 
 }

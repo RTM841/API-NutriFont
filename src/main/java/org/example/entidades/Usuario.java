@@ -9,6 +9,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
+import java.util.Random;
 
 @Entity
 @Table(name = "usuario")
@@ -38,7 +39,11 @@ public class Usuario {
     @NotBlank
     private String contrasenia;
 
-    private boolean enabled = true;
+    @Schema(example = "123456", description = "Codigo que se utiliza para verificar al usuario")
+    @NotBlank
+    private String codigo_verificacion;
+
+    private boolean enabled = false;
 
     @Transient
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
@@ -59,4 +64,10 @@ public class Usuario {
 
     @OneToMany(mappedBy = "usuario")
     private List<Receta> recetas;
+
+    public String generateVerificationCode() {
+        Random random = new Random();
+        int code = random.nextInt(999999) + 100000; // Código de 6 dígitos
+        return String.format("%06d", code);
+    }
 }

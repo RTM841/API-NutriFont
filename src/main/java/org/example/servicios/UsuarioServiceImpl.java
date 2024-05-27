@@ -6,6 +6,8 @@ import org.example.entidades.Usuario;
 import org.example.repositorios.RoleRepository;
 import org.example.repositorios.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -31,6 +33,9 @@ public class UsuarioServiceImpl implements UsuarioService{
 
     @Autowired
     PasswordEncoder passwordEncoder;
+
+    @Autowired
+    JavaMailSender mailSender;
 
 
     @Override
@@ -108,5 +113,36 @@ public class UsuarioServiceImpl implements UsuarioService{
         return usuarioRepository.findAllCorreos();
     }
 
+
+    public void sendVerificationEmail(Usuario user) {
+        String verificationCode = user.generateVerificationCode();
+        user.setCodigo_verificacion(verificationCode); // Guarda el código en el objeto User
+
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setTo(user.getCorreo());
+        message.setSubject("Código de verificación para " + "NutriFont");
+        message.setText("Hola " + user.getNombre() + ",\n\n" +
+                "Tu código de verificación para completar tu registro en " + "NutriFont" + " es:\n\n" +
+                verificationCode + "\n\n" +
+                "Este código es válido por 5 minutos.\n\n" +
+                "¡Un cordial saludo!\n\n" +
+                "El equipo de " + "NutriFont");
+
+        mailSender.send(message);
+    }
+
+    public boolean verifyUser(Usuario usuario, String codigoIngresado) {
+        String storedCode = usuario.getCodigo_verificacion();
+
+        // Verificar si los códigos coinciden
+        if (storedCode != null && storedCode.equals(codigoIngresado)) {
+            // Marcar la cuenta como verificada
+            usuario.setEnabled(true);
+
+            return true;
+        }
+
+        return false;
+    }
 
 }

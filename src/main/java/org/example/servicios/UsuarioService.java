@@ -26,5 +26,8 @@ public interface UsuarioService {
 
     List<String> findAllCorreos();
 
+    void sendVerificationEmail(Usuario usuario);
+
+    boolean verifyUser(Usuario usuario, String codigoIngresado);
 }
 
