@@ -202,24 +202,24 @@ public class UsuarioController {
     }
 
     @PostMapping("/enviarEmail-cuenta")
-    public ResponseEntity<?> enviarEmailConfriación(@RequestBody Usuario usuario) {
+    public boolean enviarEmailConfriación(@RequestBody Usuario usuario) {
         if ( usuarioService.sendVerificationEmail(usuario)){
-            return ResponseEntity.ok().body("Correo enviado de forma correcta");
+            return true;
         }else
         {
-            return ResponseEntity.badRequest().body("No se ha enviado el correo de forma correcta");
+            return false;
         }
     }
 
 
     @PostMapping("/verificar-cuenta")
-    public ResponseEntity<?> verificarCuenta(@RequestBody Usuario usuario, String codigoIngresado) {
+    public boolean verificarCuenta(@RequestBody Usuario usuario, String codigoIngresado) {
         boolean verified = usuarioService.verifyUser(usuario, codigoIngresado);
 
         if (verified) {
-            return ResponseEntity.ok().body(usuario);
+            return true;
         } else {
-            return ResponseEntity.badRequest().body("Código de verificación incorrecto");
+            return false;
         }
     }
 
