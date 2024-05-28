@@ -87,7 +87,6 @@ public class UsuarioController {
     @Operation(summary = "resgister", description = "Para resgitrar a un usuario")
     @PostMapping("/register")
     public ResponseEntity<?> register(@Valid @RequestBody Usuario usuario, BindingResult result){
-        usuarioService.sendVerificationEmail(usuario);
         return create(usuario, result);
     }
 
@@ -201,6 +200,17 @@ public class UsuarioController {
     public List<String> getCorreos(){
         return usuarioService.findAllCorreos();
     }
+
+    @PostMapping("/enviarEmail-cuenta")
+    public ResponseEntity<?> enviarEmailConfriación(@RequestBody Usuario usuario) {
+        if ( usuarioService.sendVerificationEmail(usuario)){
+            return ResponseEntity.ok().body("Correo enviado de forma correcta");
+        }else
+        {
+            return ResponseEntity.badRequest().body("No se ha enviado el correo de forma correcta");
+        }
+    }
+
 
     @PostMapping("/verificar-cuenta")
     public ResponseEntity<?> verificarCuenta(@RequestBody Usuario usuario, String codigoIngresado) {

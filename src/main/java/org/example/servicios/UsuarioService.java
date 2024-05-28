@@ -4,7 +4,6 @@ package org.example.servicios;
 import org.example.entidades.Usuario;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,7 +25,7 @@ public interface UsuarioService {
 
     List<String> findAllCorreos();
 
-    void sendVerificationEmail(Usuario usuario);
+    boolean sendVerificationEmail(Usuario usuario);
 
     boolean verifyUser(Usuario usuario, String codigoIngresado);
 }

@@ -115,7 +115,7 @@ public class UsuarioServiceImpl implements UsuarioService{
     }
 
 
-    public void sendVerificationEmail(Usuario user) {
+    public boolean sendVerificationEmail(Usuario user) {
         String verificationCode = user.generateVerificationCode();
         user.setCodigo_verificacion(verificationCode); // Guarda el código en el objeto User
 
@@ -130,6 +130,7 @@ public class UsuarioServiceImpl implements UsuarioService{
                 "El equipo de " + "NutriFont");
 
         mailSender.send(message);
+        return true;
     }
 
     public boolean verifyUser(Usuario usuario, String codigoIngresado) {
@@ -138,11 +139,8 @@ public class UsuarioServiceImpl implements UsuarioService{
         // Verificar si los códigos coinciden
         if (storedCode != null && storedCode.equals(codigoIngresado)) {
             // Marcar la cuenta como verificada
-            usuario.setEnabled(true);
-
             return true;
         }
-
         return false;
     }
 
