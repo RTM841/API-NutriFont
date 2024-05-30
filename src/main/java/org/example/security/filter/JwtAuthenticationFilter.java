@@ -109,11 +109,6 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         response.setStatus(200);
 
 
-
-       //Optional<Usuario> usuario = usuarioService.findByNombre(username);
-        //Usuario usuario2 = usuario.get();
-        //usuario2.getId();
-        //System.out.println(roles.stream().findFirst());
     }
 
     @Override

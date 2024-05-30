@@ -6,6 +6,8 @@ import org.springframework.mail.javamail.JavaMailSenderImpl;
 
 import java.util.Properties;
 
+
+//Configuración del email
 public class MailConfig {
     @Bean
     public JavaMailSender getJavaMailSender() {

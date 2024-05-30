@@ -8,6 +8,8 @@ import io.swagger.v3.oas.models.security.SecurityScheme;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+//Configuración del Swagger y los token
+
 /*
 http://localhost:8080/v3/api-docs
 http://localhost:8080/swagger-ui/index.html

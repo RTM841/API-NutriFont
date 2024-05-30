@@ -24,22 +24,10 @@ import java.util.Optional;
 @Tag(name = "categoria", description = "Este es el controlador de categoria , en el cual definimos las opreaciones básicas del CRUD")
 public class CategoriaController {
 
-    /*private List<Categoria> categorias = new ArrayList<>(Arrays.asList(
-            new Categoria(1,"Pescado", "pescado"),
-            new Categoria(2,"Carne", "carne"),
-            new Categoria(3,"Fruta", "fruta")
-    ));*/
-
-
-
 
     @Autowired
     private CategoriaService categoriaService;
 
-    /*@GetMapping()
-    public ResponseEntity<List<Categoria>> getAll(){
-        return ResponseEntity.ok(categorias);
-    }*/
 
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200",
