@@ -114,6 +114,11 @@ public class UsuarioServiceImpl implements UsuarioService{
         return usuarioRepository.findAllCorreos();
     }
 
+    @Override
+    public List<String> findAllNombres() {
+        return usuarioRepository.findAllNombres();
+    }
+
 
     public boolean sendVerificationEmail(Usuario user) {
         String verificationCode = user.generateVerificationCode();

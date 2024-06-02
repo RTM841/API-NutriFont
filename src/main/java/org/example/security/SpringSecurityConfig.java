@@ -38,8 +38,9 @@ public class SpringSecurityConfig {
                         .requestMatchers("/swagger-ui/**", "/v3/api-docs/**", "/swagger-ui.html").permitAll()
                         //Permirsos de roles y usuarios.
                         .requestMatchers(HttpMethod.GET, "/api/users").hasRole("SUPERADMIN")
-                        .requestMatchers(HttpMethod.GET, "/api/users/{username}").hasRole("SUPERADMIN")
+                        .requestMatchers(HttpMethod.GET, "/api/users/{nombre}").hasRole("SUPERADMIN")
                         .requestMatchers(HttpMethod.GET, "/api/users/obt/correos").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/users/obt/nombres").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/users/{userId}/roles").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/users/register").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/users/enviarEmail-cuenta").permitAll()

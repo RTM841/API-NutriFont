@@ -201,6 +201,11 @@ public class UsuarioController {
         return usuarioService.findAllCorreos();
     }
 
+    @GetMapping("/obt/nombres")
+    public List<String> getNombres(){
+        return usuarioService.findAllNombres();
+    }
+
     @PostMapping("/enviarEmail-cuenta")
     public boolean enviarEmailConfriación(@RequestBody Usuario usuario) {
         if ( usuarioService.sendVerificationEmail(usuario)){
