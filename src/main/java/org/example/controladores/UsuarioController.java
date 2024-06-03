@@ -215,8 +215,6 @@ public class UsuarioController {
             return false;
         }
     }
-
-
     @PostMapping("/verificar-cuenta")
     public boolean verificarCuenta(@RequestBody Usuario usuario, String codigoIngresado) {
         boolean verified = usuarioService.verifyUser(usuario, codigoIngresado);

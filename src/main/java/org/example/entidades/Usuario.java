@@ -27,10 +27,6 @@ public class Usuario {
     @NotBlank
     private String nombre;
 
-    @Schema(example = "Tejedera", description = "Apellido del Usuario")
-    @NotBlank
-    private String apellido;
-
     @Schema(example = "ruben841@gmail.com", description = "Correo del Usuario")
     @NotBlank
     private String correo;
