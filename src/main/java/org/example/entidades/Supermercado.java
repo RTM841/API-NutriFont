@@ -36,9 +36,6 @@ public class Supermercado {
     private int telefono;
 
     @OneToMany(mappedBy = "supermercado")
-    private List<Producto> prodcutos;
-
-    @OneToMany(mappedBy = "supermercado")
     private List<Usuario> usuarios;
 
 }

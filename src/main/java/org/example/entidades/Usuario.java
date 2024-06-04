@@ -47,7 +47,7 @@ public class Usuario {
     private boolean admin;
 
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.REMOVE)
     @JoinTable(name ="usu_rol",
             joinColumns = @JoinColumn(name = "user_Id"),
             inverseJoinColumns = @JoinColumn(name ="rol_Id"),

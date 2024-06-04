@@ -8,6 +8,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Entity
 @Table(name = "producto")
 @Data //Genera lo getter and setter
@@ -135,9 +137,13 @@ public class Producto {
 
     //Relaciones
 
-    @ManyToOne
-    @JoinColumn(name = "supermercado_Id")
-    private Supermercado supermercado;
+    @ManyToMany(cascade = CascadeType.REMOVE)
+    @JoinTable(name ="super_usu",
+            joinColumns = @JoinColumn(name = "codigoBarras"),
+            inverseJoinColumns = @JoinColumn(name ="supermercado_Id"),
+            uniqueConstraints = {@UniqueConstraint(columnNames = {"codigoBarras", "supermercado_Id"})}
+    )
+    private List<Supermercado> supermercados;
 
     @ManyToOne
     @JoinColumn(name = "categoria_Id")

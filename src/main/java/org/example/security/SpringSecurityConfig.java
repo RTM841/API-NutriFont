@@ -37,7 +37,7 @@ public class SpringSecurityConfig {
         return http.authorizeHttpRequests(auth -> auth
                         .requestMatchers("/swagger-ui/**", "/v3/api-docs/**", "/swagger-ui.html").permitAll()
                         //Permirsos de roles y usuarios.
-                        .requestMatchers(HttpMethod.GET, "/api/users").hasRole("SUPERADMIN")
+                        .requestMatchers(HttpMethod.GET, "/api/users").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/users/{nombre}").hasRole("SUPERADMIN")
                         .requestMatchers(HttpMethod.GET, "/api/users/obt/correos").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/users/obt/nombres").permitAll()
@@ -46,7 +46,7 @@ public class SpringSecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/api/users/enviarEmail-cuenta").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/users/verificar-cuenta").permitAll()
                         .requestMatchers(HttpMethod.PUT, "/api/users/{id}").hasRole("SUPERADMIN")
-                        .requestMatchers(HttpMethod.DELETE, "/api/users/{id}").hasRole("SUPERADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/api/users/{id}").permitAll()
                         //Permisos de Categoria.
                         .requestMatchers(HttpMethod.GET, "/api/categoria").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/categoria/{id}").permitAll()
