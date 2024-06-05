@@ -37,16 +37,16 @@ public class SpringSecurityConfig {
         return http.authorizeHttpRequests(auth -> auth
                         .requestMatchers("/swagger-ui/**", "/v3/api-docs/**", "/swagger-ui.html").permitAll()
                         //Permirsos de roles y usuarios.
-                        .requestMatchers(HttpMethod.GET, "/api/users").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/users").hasRole("SUPERADMIN")
                         .requestMatchers(HttpMethod.GET, "/api/users/{nombre}").hasRole("SUPERADMIN")
                         .requestMatchers(HttpMethod.GET, "/api/users/obt/correos").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/users/obt/nombres").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/api/users/{userId}/roles").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/users/{userId}/roles").hasRole("SUPERADMIN")
                         .requestMatchers(HttpMethod.POST, "/api/users/register").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/users/enviarEmail-cuenta").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/users/verificar-cuenta").permitAll()
                         .requestMatchers(HttpMethod.PUT, "/api/users/{id}").hasRole("SUPERADMIN")
-                        .requestMatchers(HttpMethod.DELETE, "/api/users/{id}").permitAll()
+                        .requestMatchers(HttpMethod.DELETE, "/api/users/{id}").hasRole("SUPERADMIN")
                         //Permisos de Categoria.
                         .requestMatchers(HttpMethod.GET, "/api/categoria").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/categoria/{id}").permitAll()
@@ -62,9 +62,9 @@ public class SpringSecurityConfig {
                         //Permisos Productos.
                         .requestMatchers(HttpMethod.GET, "/api/producto").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/producto/{id}").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/api/producto").permitAll()
-                        .requestMatchers(HttpMethod.PUT, "/api/producto/{id}").permitAll()
-                        .requestMatchers(HttpMethod.DELETE, "/api/producto/{id}").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/producto").hasAnyRole("ADMINSUPERMERCADO","SUPERADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/api/producto/{id}").hasAnyRole("ADMINSUPERMERCADO","SUPERADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/api/producto/{id}").hasAnyRole("ADMINSUPERMERCADO","SUPERADMIN")
                         //Permisos Receta.
                         .requestMatchers(HttpMethod.GET, "/api/receta").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/receta/{id}").permitAll()
