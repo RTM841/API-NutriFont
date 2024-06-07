@@ -2,8 +2,10 @@ package org.example.servicios;
 
 
 import org.example.entidades.Rol;
+import org.example.entidades.Supermercado;
 import org.example.entidades.Usuario;
 import org.example.repositorios.RoleRepository;
+import org.example.repositorios.SupermercadoRepository;
 import org.example.repositorios.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
@@ -29,6 +31,9 @@ public class UsuarioServiceImpl implements UsuarioService{
     UsuarioRepository usuarioRepository;
 
     @Autowired
+    SupermercadoRepository supermercadoRepository;
+
+    @Autowired
     RoleRepository roleRepository;
 
     @Autowired
@@ -48,6 +53,7 @@ public class UsuarioServiceImpl implements UsuarioService{
     @Override
     @Transactional
     public Usuario save(Usuario usuario) {
+        //Crear con ROL
         Optional<Rol> optionalRoleUser = roleRepository.findByName("ROLE_USER");
         List <Rol> roles = new ArrayList<>();
         optionalRoleUser.ifPresent(roles::add);
@@ -57,6 +63,12 @@ public class UsuarioServiceImpl implements UsuarioService{
         }
         usuario.setRoles(roles);
         usuario.setContrasenia(passwordEncoder.encode(usuario.getContrasenia()));
+
+        //Crear con Supermercado
+        Optional<Supermercado> optionalSupermercado = supermercadoRepository.findById(Long.valueOf(1));
+        List<Supermercado>  supermercados = new ArrayList<>();
+        optionalSupermercado.ifPresent(supermercados::add);
+        usuario.setSupermercados(supermercados);
 
         return usuarioRepository.save(usuario);
     }
@@ -92,7 +104,6 @@ public class UsuarioServiceImpl implements UsuarioService{
             Usuario usuarioDB = usuarioOptional.orElseThrow();
             usuarioDB.setNombre(usuario.getNombre());
             usuarioDB.setContrasenia(usuario.getContrasenia());
-            usuarioDB.setSupermercado(usuario.getSupermercado());
             return Optional.of(usuarioRepository.save(usuarioDB));
         }
         return usuarioOptional;

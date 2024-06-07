@@ -135,19 +135,26 @@ public class Producto {
     @NotNull
     private boolean moluscos;
 
+    @Schema(example = "1,2,3...", description = "Si lleva ese alérgeno o no")
+    @NotNull
+    private int categoria;
+
     //Relaciones
 
     @ManyToMany(cascade = CascadeType.REMOVE)
-    @JoinTable(name ="super_usu",
+    @JoinTable(name ="produc_super",
             joinColumns = @JoinColumn(name = "codigoBarras"),
             inverseJoinColumns = @JoinColumn(name ="supermercado_Id"),
             uniqueConstraints = {@UniqueConstraint(columnNames = {"codigoBarras", "supermercado_Id"})}
     )
     private List<Supermercado> supermercados;
 
-    @ManyToOne
-    @JoinColumn(name = "categoria_Id")
-    private Categoria categoria;
 
-
+    @ManyToMany(cascade = CascadeType.REMOVE)
+    @JoinTable(name ="prodcu_categoria",
+            joinColumns = @JoinColumn(name = "codigoBarras"),
+            inverseJoinColumns = @JoinColumn(name ="categoria_Id"),
+            uniqueConstraints = {@UniqueConstraint(columnNames = {"codigoBarras", "categoria_Id"})}
+    )
+    private List<Categoria> categorias;
 }

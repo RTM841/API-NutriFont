@@ -1,7 +1,9 @@
 package org.example.servicios;
 
+import org.example.entidades.Categoria;
 import org.example.entidades.Producto;
 import org.example.entidades.Supermercado;
+import org.example.repositorios.CategoriaRepository;
 import org.example.repositorios.ProductoRepository;
 import org.example.repositorios.SupermercadoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,9 @@ public class ProductoServiceImpl implements ProdcutoService {
     @Autowired
     private SupermercadoRepository supermercadoRepository;
 
+    @Autowired
+    private CategoriaRepository categoriaRepository;
+
     @Override
     @Transactional(readOnly = true)
     public List<Producto> findAll() {return productoRepository.findAll();}
@@ -33,11 +38,18 @@ public class ProductoServiceImpl implements ProdcutoService {
     @Override
     @Transactional
     public Producto create(Producto producto) {
-
+        //Añadir supermecado
         Optional<Supermercado> optionalSupermercado = supermercadoRepository.findById(Long.valueOf(1));
         List<Supermercado>  supermercados = new ArrayList<>();
         optionalSupermercado.ifPresent(supermercados::add);
         producto.setSupermercados(supermercados);
+
+        //Añadir categoria
+        Optional<Categoria> optionalCategoria = categoriaRepository.findById(Long.valueOf(producto.getCategoria()));
+        List<Categoria>  categorias = new ArrayList<>();
+        optionalCategoria.ifPresent(categorias::add);
+        producto.setCategorias(categorias);
+
         return productoRepository.save(producto);
     }
 

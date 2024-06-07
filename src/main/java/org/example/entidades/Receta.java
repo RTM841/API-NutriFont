@@ -3,9 +3,12 @@ package org.example.entidades;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Entity
 @Table(name = "receta")
@@ -31,7 +34,7 @@ public class Receta {
     @NotBlank
     private String tiempoPreparacion;
 
-    @Schema(example = "4,3", description = "Valoración de la receta (Dificultad)")
+    @Schema(example = "Buena", description = "Valoración de la receta (Dificultad)")
     @NotBlank
     private String valoracion;
 
@@ -42,7 +45,15 @@ public class Receta {
     @NotBlank
     private String preparacion;
 
-    @ManyToOne
-    @JoinColumn(name = "usuario_id")
-    private Usuario usuario;
+    @Schema(example = "1,2,3...", description = "Valoración de la receta (Dificultad)")
+    @NotNull
+    private int usuario;
+
+    @ManyToMany(cascade = CascadeType.REMOVE)
+    @JoinTable(name ="receta_usu",
+            joinColumns = @JoinColumn(name = "receta_Id"),
+            inverseJoinColumns = @JoinColumn(name ="usuario_Id"),
+            uniqueConstraints = {@UniqueConstraint(columnNames = {"receta_Id", "usuario_Id"})}
+    )
+    private List<Usuario> usuarios;
 }

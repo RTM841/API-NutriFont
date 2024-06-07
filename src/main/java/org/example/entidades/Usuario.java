@@ -55,12 +55,14 @@ public class Usuario {
     )
     private List<Rol> roles;
 
-    @ManyToOne
-    @JoinColumn(name = "supermercado_Id")
-    private Supermercado supermercado;
 
-    @OneToMany(mappedBy = "usuario")
-    private List<Receta> recetas;
+    @ManyToMany(cascade = CascadeType.REMOVE)
+    @JoinTable(name ="usu_super",
+            joinColumns = @JoinColumn(name = "usuario_Id"),
+            inverseJoinColumns = @JoinColumn(name ="supermercado_Id"),
+            uniqueConstraints = {@UniqueConstraint(columnNames = {"usuario_Id", "supermercado_Id"})}
+    )
+    private List<Supermercado> supermercados;
 
     public String generateVerificationCode() {
         Random random = new Random();

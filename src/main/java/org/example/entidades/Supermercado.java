@@ -35,7 +35,4 @@ public class Supermercado {
     @NotNull
     private int telefono;
 
-    @OneToMany(mappedBy = "supermercado")
-    private List<Usuario> usuarios;
-
 }

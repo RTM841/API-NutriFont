@@ -1,11 +1,15 @@
 package org.example.servicios;
 
 import org.example.entidades.Receta;
+import org.example.entidades.Supermercado;
+import org.example.entidades.Usuario;
 import org.example.repositorios.RecetaRepository;
+import org.example.repositorios.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,6 +18,9 @@ public class RecetaServiceImpl implements RecetaService {
 
     @Autowired
     private RecetaRepository recetaRepository;
+
+    @Autowired
+    private UsuarioRepository usuarioRepository;
 
     @Override
     @Transactional(readOnly = true)
@@ -27,6 +34,12 @@ public class RecetaServiceImpl implements RecetaService {
     @Override
     @Transactional
     public Receta create(Receta receta) {
+        //Crear con Usuario
+        Optional<Usuario> optionalUsuario = usuarioRepository.findById(Long.valueOf(receta.getUsuario()));
+        List<Usuario>  usuarios = new ArrayList<>();
+        optionalUsuario.ifPresent(usuarios::add);
+        receta.setUsuarios(usuarios);
+
         return recetaRepository.save(receta);
     }
 
@@ -41,7 +54,6 @@ public class RecetaServiceImpl implements RecetaService {
             recetaDb.setTiempoPreparacion(receta.getTiempoPreparacion());
             recetaDb.setValoracion(receta.getValoracion());
             recetaDb.setPreparacion(receta.getPreparacion());
-            recetaDb.setUsuario(receta.getUsuario());
             return Optional.of(recetaRepository.save(recetaDb));
         }
         return recetaOptional;
