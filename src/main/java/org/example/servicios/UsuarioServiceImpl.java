@@ -160,4 +160,9 @@ public class UsuarioServiceImpl implements UsuarioService{
         return false;
     }
 
+    @Override
+    public int getIdUsuario(String nombre) {
+        return usuarioRepository.findAllByNombre(nombre);
+    }
+
 }

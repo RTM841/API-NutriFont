@@ -22,6 +22,9 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
             "WHERE u.id = :userId", nativeQuery = true)
     String findRoleNamesByUserId(@Param("userId") int userId);
 
+    @Query(value = "SELECT u.id FROM usuario u WHERE u.nombre = :nombre", nativeQuery = true)
+    int findAllByNombre(@Param("nombre") String nombre);
+
     @Query(value = "SELECT correo FROM Usuario", nativeQuery = true)
     List<String> findAllCorreos();
 

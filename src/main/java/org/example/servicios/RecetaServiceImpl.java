@@ -62,6 +62,8 @@ public class RecetaServiceImpl implements RecetaService {
 
     @Override
     public Optional<Receta> delete(Long id) {
+        recetaRepository.deleteRecetasRelacion(id);
+
         Optional <Receta> recetaOptional = recetaRepository.findById(id);
         recetaOptional.ifPresent( recetaDb -> recetaRepository.delete(recetaDb));
         return recetaOptional;

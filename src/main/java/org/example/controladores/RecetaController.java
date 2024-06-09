@@ -123,8 +123,10 @@ public class RecetaController {
         if(recetaOptional.isPresent()){
             return ResponseEntity.ok(
                     recetaOptional.orElseThrow());
+        }else {
+            return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.notFound().build();
+
     }
 
 }

@@ -121,11 +121,14 @@ public class ProductoController {
     @Operation(summary = "delete", description = "Borra el producto")
     @DeleteMapping("/{id}")
     public ResponseEntity<Producto> delete(@PathVariable Long id){
+
         Optional<Producto> productoOptional = prodcutoService.delete(id);
         if(productoOptional.isPresent()){
             return ResponseEntity.ok(productoOptional.orElseThrow());
+        }else{
+            return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.notFound().build();
+
     }
 
 }

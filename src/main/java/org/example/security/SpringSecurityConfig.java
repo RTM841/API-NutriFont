@@ -41,6 +41,7 @@ public class SpringSecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/api/users/{nombre}").hasRole("SUPERADMIN")
                         .requestMatchers(HttpMethod.GET, "/api/users/obt/correos").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/users/obt/nombres").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/users/obt/id/{nombre}").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/users/{userId}/roles").hasRole("SUPERADMIN")
                         .requestMatchers(HttpMethod.POST, "/api/users/register").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/users/enviarEmail-cuenta").permitAll()

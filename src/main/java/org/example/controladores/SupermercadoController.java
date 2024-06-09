@@ -123,8 +123,10 @@ public class SupermercadoController {
         Optional<Supermercado> supermercadoOptional = supermercadoService.delete(id);
         if(supermercadoOptional.isPresent()){
             return ResponseEntity.ok(supermercadoOptional.orElseThrow());
+        }else {
+            return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.notFound().build();
+
     }
 
 }

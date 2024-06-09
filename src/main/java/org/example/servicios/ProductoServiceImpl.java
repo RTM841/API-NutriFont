@@ -60,15 +60,16 @@ public class ProductoServiceImpl implements ProdcutoService {
         if(productoOptional.isPresent()){
             Producto productoDb = productoOptional.orElseThrow();
             productoDb.setNombre(producto.getNombre());
-            productoDb.setCategoria(producto.getCategoria());
+            productoDb.setImgPath(producto.getImgPath());
+            productoDb.setDescripcion(producto.getDescripcion());
+            productoDb.setDisponibilidad(producto.getDisponibilidad());
+            productoDb.setPrecio(producto.getPrecio());
             productoDb.setCalorias(producto.getCalorias());
             productoDb.setGrasaSaturada(producto.getGrasaSaturada());
             productoDb.setHidratos(producto.getHidratos());
             productoDb.setAzucares(producto.getAzucares());
             productoDb.setProteinas(producto.getProteinas());
             productoDb.setSal(producto.getSal());
-            productoDb.setDescripcion(producto.getDescripcion());
-            productoDb.setDisponibilidad(producto.getDisponibilidad());
             productoDb.setGluten(producto.isGluten());
             productoDb.setCrustaceo(producto.isCrustaceo());
             productoDb.setHuevo(producto.isHuevo());
@@ -85,6 +86,7 @@ public class ProductoServiceImpl implements ProdcutoService {
             productoDb.setSulfitos(producto.isSulfitos());
             productoDb.setAltramuces(producto.isAltramuces());
             productoDb.setMoluscos(producto.isMoluscos());
+            productoDb.setCategoria(producto.getCategoria());
             return Optional.of(productoRepository.save(productoDb));
         }
         return productoOptional;
@@ -93,6 +95,10 @@ public class ProductoServiceImpl implements ProdcutoService {
 
     @Override
     public Optional<Producto> delete(Long id) {
+        // Primero, eliminar las relaciones en las tablas intermedias
+        productoRepository.deleteSupermercadoRelations(id);
+        productoRepository.deleteCategoriaRelations(id);
+
         Optional <Producto> productoOptional = productoRepository.findById(id);
         productoOptional.ifPresent( productoDb -> productoRepository.delete(productoDb));
         return productoOptional;

@@ -30,5 +30,7 @@ public interface UsuarioService {
     boolean sendVerificationEmail(Usuario usuario);
 
     boolean verifyUser(Usuario usuario, String codigoIngresado);
+
+    int getIdUsuario(String nombre);
 }
 

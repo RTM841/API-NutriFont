@@ -206,6 +206,11 @@ public class UsuarioController {
         return usuarioService.findAllNombres();
     }
 
+    @GetMapping("/obt/id/{nombre}")
+    public int getId(@PathVariable String nombre){
+        return usuarioService.getIdUsuario(nombre);
+    }
+
     @PostMapping("/enviarEmail-cuenta")
     public boolean enviarEmailConfriación(@RequestBody Usuario usuario) {
         if ( usuarioService.sendVerificationEmail(usuario)){
@@ -225,5 +230,7 @@ public class UsuarioController {
             return false;
         }
     }
+
+
 
 }

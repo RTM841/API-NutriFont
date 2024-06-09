@@ -124,8 +124,10 @@ public class CategoriaController {
         if(categoriaOptional.isPresent()){
             return ResponseEntity.ok(
                     categoriaOptional.orElseThrow());
+        }else {
+            return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.notFound().build();
+
     }
 
 }
