@@ -103,8 +103,10 @@ public class ProductoController {
         Optional<Producto> productoOptional = prodcutoService.update(id, producto);
         if(productoOptional.isPresent()) {
             return ResponseEntity.status(HttpStatus.CREATED).body(productoOptional.orElseThrow());
+        }else{
+            return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.notFound().build();
+
     }
 
     @ApiResponses(value = {

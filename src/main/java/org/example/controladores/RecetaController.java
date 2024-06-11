@@ -101,8 +101,9 @@ public class RecetaController {
         Optional<Receta> recetaOptional = recetaService.update(id, receta);
         if(recetaOptional.isPresent()) {
             return ResponseEntity.status(HttpStatus.CREATED).body(recetaOptional.orElseThrow());
+        }else {
+            return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.notFound().build();
     }
 
     @ApiResponses(value = {

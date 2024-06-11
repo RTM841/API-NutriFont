@@ -25,10 +25,10 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
     @Query(value = "SELECT u.id FROM usuario u WHERE u.nombre = :nombre", nativeQuery = true)
     int findAllByNombre(@Param("nombre") String nombre);
 
-    @Query(value = "SELECT correo FROM Usuario", nativeQuery = true)
+    @Query(value = "SELECT correo FROM usuario", nativeQuery = true)
     List<String> findAllCorreos();
 
-    @Query(value = "SELECT nombre FROM Usuario", nativeQuery = true)
+    @Query(value = "SELECT nombre FROM usuario", nativeQuery = true)
     List<String> findAllNombres();
 
 

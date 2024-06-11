@@ -102,8 +102,10 @@ public class CategoriaController {
         Optional<Categoria> categoriaOptional = categoriaService.update(id, categoria);
         if(categoriaOptional.isPresent()) {
             return ResponseEntity.status(HttpStatus.CREATED).body(categoriaOptional.orElseThrow());
+        }else{
+            return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.notFound().build();
+
     }
 
     @ApiResponses(value = {

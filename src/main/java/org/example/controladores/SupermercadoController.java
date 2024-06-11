@@ -102,8 +102,10 @@ public class SupermercadoController {
         Optional<Supermercado> supermercadoOptional = supermercadoService.update(id, supermercado);
         if(supermercadoOptional.isPresent()) {
             return ResponseEntity.status(HttpStatus.CREATED).body(supermercadoOptional.orElseThrow());
+        }else{
+            return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.notFound().build();
+
     }
 
     @ApiResponses(value = {
