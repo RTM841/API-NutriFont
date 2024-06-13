@@ -11,18 +11,18 @@ import java.util.Optional;
 @Service
 public interface SupermercadoService {
 
-    //Buscar categoria
+    //Buscar supermercado
     List<Supermercado> findAll();
 
     //Buscar por ID
     Optional<Supermercado> findById(Long id);
 
-    //Añadir categoria
+    //Añadir supermrecado
     Supermercado create (Supermercado supermercado);
 
-    //Actualizar categoria
+    //Actualizar supermercado
     Optional<Supermercado> update(Long id, Supermercado supermercado);
 
-    //Borrar categoria
+    //Borrar supermrecado
     Optional<Supermercado> delete(Long id);
 }

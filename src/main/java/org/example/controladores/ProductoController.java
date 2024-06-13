@@ -58,7 +58,7 @@ public class ProductoController {
                     content = { @Content(mediaType = "application/json",
                             array = @ArraySchema(schema = @Schema(implementation = Message.class)))})
     })
-    @Operation(summary = "vista", description = "Devuelve una lista de las canciones por su id")
+    @Operation(summary = "vista", description = "Devuelve una lista de los productos por su id")
     @GetMapping("/{id}")
     public ResponseEntity<?> view(@PathVariable Long id){
         Optional<Producto> productoOptional = prodcutoService.findById(id);
@@ -75,7 +75,7 @@ public class ProductoController {
                             array = @ArraySchema(schema = @Schema(implementation = Producto.class)))}),
 
             @ApiResponse(responseCode = "403",
-                    description = "No se ha creado de forma correcta la categoria",
+                    description = "No se ha creado de forma correcta el producto",
                     content = { @Content(mediaType = "application/json",
                             array = @ArraySchema(schema = @Schema(implementation = Message.class)))})
     })
@@ -93,7 +93,7 @@ public class ProductoController {
                             array = @ArraySchema(schema = @Schema(implementation = Producto.class)))}),
 
             @ApiResponse(responseCode = "403",
-                    description = "No se ha actualizado de forma correcta la categoria",
+                    description = "No se ha actualizado de forma correcta el producto",
                     content = { @Content(mediaType = "application/json",
                             array = @ArraySchema(schema = @Schema(implementation = Message.class)))})
     })
@@ -116,7 +116,7 @@ public class ProductoController {
                             array = @ArraySchema(schema = @Schema(implementation = Producto.class)))}),
 
             @ApiResponse(responseCode = "403",
-                    description = "No se ha borrado de forma correcta la categoria",
+                    description = "No se ha borrado de forma correcta el producto",
                     content = { @Content(mediaType = "application/json",
                             array = @ArraySchema(schema = @Schema(implementation = Message.class)))})
     })

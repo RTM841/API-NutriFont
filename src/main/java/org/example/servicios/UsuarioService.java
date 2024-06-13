@@ -18,7 +18,7 @@ public interface UsuarioService {
     //Actualizar Usuario
     Optional<Usuario> update(Long id, Usuario usuario);
 
-    //Borrar cancion
+    //Borrar Usuario
     Optional<Usuario> delete(Long id);
 
     String getRoleNamesByUserId(int userId);

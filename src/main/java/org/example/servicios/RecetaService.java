@@ -10,18 +10,18 @@ import java.util.Optional;
 @Service
 public interface RecetaService {
 
-    //Buscar categoria
+    //Buscar receta
     List<Receta> findAll();
 
     //Buscar por ID
     Optional<Receta> findById(Long id);
 
-    //Añadir categoria
+    //Añadir receta
     Receta create (Receta receta);
 
-    //Actualizar categoria
+    //Actualizar receta
     Optional<Receta> update(Long id, Receta receta);
 
-    //Borrar categoria
+    //Borrar receta
     Optional<Receta> delete(Long id);
 }

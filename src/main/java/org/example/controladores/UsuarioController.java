@@ -190,27 +190,31 @@ public class UsuarioController {
         return null;
     }
 
-
+    @Operation(summary = "get", description = "Obetener los roles del usuario ID")
     @GetMapping("/{userId}/roles")
     public String getRoleNamesByUserId(@PathVariable int userId) {
         return usuarioService.getRoleNamesByUserId(userId);
     }
 
+    @Operation(summary = "get", description = "Obtener los correos de la BD")
     @GetMapping("/obt/correos")
     public List<String> getCorreos(){
         return usuarioService.findAllCorreos();
     }
 
+    @Operation(summary = "get", description = "Obtener los nombres de los usuarios de la BD")
     @GetMapping("/obt/nombres")
     public List<String> getNombres(){
         return usuarioService.findAllNombres();
     }
 
+    @Operation(summary = "get", description = "Obtener el id del usaurio introducido por su nombre de la BD")
     @GetMapping("/obt/id/{nombre}")
     public int getId(@PathVariable String nombre){
         return usuarioService.getIdUsuario(nombre);
     }
 
+    @Operation(summary = "post", description = "Enviar el correo de verificiación de la cuenta")
     @PostMapping("/enviarEmail-cuenta")
     public boolean enviarEmailConfriación(@RequestBody Usuario usuario) {
         if ( usuarioService.sendVerificationEmail(usuario)){
@@ -220,6 +224,8 @@ public class UsuarioController {
             return false;
         }
     }
+
+    @Operation(summary = "post", description = "Verificar que el usuairo dice quien ser mediante el código enviado y el introducido")
     @PostMapping("/verificar-cuenta")
     public boolean verificarCuenta(@RequestBody Usuario usuario, String codigoIngresado) {
         boolean verified = usuarioService.verifyUser(usuario, codigoIngresado);

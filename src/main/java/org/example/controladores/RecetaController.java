@@ -39,7 +39,7 @@ public class RecetaController {
                     content = { @Content(mediaType = "application/json",
                             array = @ArraySchema(schema = @Schema(implementation = Message.class)))})
     })
-    @Operation(summary = "findAll", description = "Devuelve una lista de las canciones")
+    @Operation(summary = "findAll", description = "Devuelve una lista de las recetas")
     @GetMapping
     public List<Receta> list(){
         return recetaService.findAll();
@@ -56,14 +56,14 @@ public class RecetaController {
                     content = { @Content(mediaType = "application/json",
                             array = @ArraySchema(schema = @Schema(implementation = Message.class)))})
     })
-    @Operation(summary = "vista", description = "Devuelve una lista de las canciones por su id")
+    @Operation(summary = "vista", description = "Devuelve una lista de las recetas por su id")
     @GetMapping("/{id}")
     public ResponseEntity<?> view(@PathVariable Long id){
         Optional<Receta> recetaOptional = recetaService.findById(id);
         if(recetaOptional.isPresent()){
             return ResponseEntity.ok(recetaOptional.orElseThrow());
         }
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No se ha encontrado ninguna cancion con ese Id");
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No se ha encontrado ninguna receta con ese Id");
     }
 
     @ApiResponses(value = {
@@ -73,11 +73,11 @@ public class RecetaController {
                             array = @ArraySchema(schema = @Schema(implementation = Receta.class)))}),
 
             @ApiResponse(responseCode = "403",
-                    description = "No se ha creado de forma correcta la categoria",
+                    description = "No se ha creado de forma correcta la receta",
                     content = { @Content(mediaType = "application/json",
                             array = @ArraySchema(schema = @Schema(implementation = Message.class)))})
     })
-    @Operation(summary = "create", description = "Crea la categoria")
+    @Operation(summary = "create", description = "Crea la receta")
     @PostMapping
     public ResponseEntity<Receta> create(@RequestBody Receta receta){
         return ResponseEntity.status(HttpStatus.CREATED).body(recetaService.create(receta));
@@ -91,11 +91,11 @@ public class RecetaController {
                             array = @ArraySchema(schema = @Schema(implementation = Receta.class)))}),
 
             @ApiResponse(responseCode = "403",
-                    description = "No se ha actualizado de forma correcta la categoria",
+                    description = "No se ha actualizado de forma correcta la receta",
                     content = { @Content(mediaType = "application/json",
                             array = @ArraySchema(schema = @Schema(implementation = Message.class)))})
     })
-    @Operation(summary = "update", description = "Actualiza la canción")
+    @Operation(summary = "update", description = "Actualiza la receta")
     @PutMapping("/{id}")
     public ResponseEntity<Receta> update(@PathVariable Long id, @RequestBody Receta receta){
         Optional<Receta> recetaOptional = recetaService.update(id, receta);
@@ -113,11 +113,11 @@ public class RecetaController {
                             array = @ArraySchema(schema = @Schema(implementation = Receta.class)))}),
 
             @ApiResponse(responseCode = "403",
-                    description = "No se ha borrado de forma correcta la categoria",
+                    description = "No se ha borrado de forma correcta la receta",
                     content = { @Content(mediaType = "application/json",
                             array = @ArraySchema(schema = @Schema(implementation = Message.class)))})
     })
-    @Operation(summary = "delete", description = "Borra la canción")
+    @Operation(summary = "delete", description = "Borra la receta")
     @DeleteMapping("/{id}")
     public ResponseEntity<Receta> delete(@PathVariable Long id){
         Optional<Receta> recetaOptional = recetaService.delete(id);

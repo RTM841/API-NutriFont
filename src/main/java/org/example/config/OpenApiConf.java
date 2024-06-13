@@ -9,11 +9,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 //Configuración del Swagger y los token
-
-/*
-http://localhost:8080/v3/api-docs
-http://localhost:8080/swagger-ui/index.html
-*/
 @Configuration
 public class OpenApiConf {
     private SecurityScheme createAPIKeyScheme() {

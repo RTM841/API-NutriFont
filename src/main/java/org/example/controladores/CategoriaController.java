@@ -40,7 +40,7 @@ public class CategoriaController {
                     content = { @Content(mediaType = "application/json",
                             array = @ArraySchema(schema = @Schema(implementation = Message.class)))})
     })
-    @Operation(summary = "findAll", description = "Devuelve una lista de las canciones")
+    @Operation(summary = "findAll", description = "Devuelve una lista de categorias")
     @GetMapping
     public List<Categoria> getAll(){
         return categoriaService.findAll();
@@ -57,14 +57,14 @@ public class CategoriaController {
                     content = { @Content(mediaType = "application/json",
                             array = @ArraySchema(schema = @Schema(implementation = Message.class)))})
     })
-    @Operation(summary = "vista", description = "Devuelve una lista de las canciones por su id")
+    @Operation(summary = "vista", description = "Devuelve una lista de las categorias por su id")
     @GetMapping("/{id}")
     public ResponseEntity<?> view(@PathVariable Long id){
         Optional<Categoria> categoriaOptional = categoriaService.findById(id);
         if(categoriaOptional.isPresent()){
             return ResponseEntity.ok(categoriaOptional.orElseThrow());
         }
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No se ha encontrado ninguna cancion con ese Id");
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No se ha encontrado ninguna categoria con ese Id");
     }
 
     @ApiResponses(value = {
@@ -96,7 +96,7 @@ public class CategoriaController {
                     content = { @Content(mediaType = "application/json",
                             array = @ArraySchema(schema = @Schema(implementation = Message.class)))})
     })
-    @Operation(summary = "update", description = "Actualiza la canción")
+    @Operation(summary = "update", description = "Actualiza la categoria")
     @PutMapping("/{id}")
     public ResponseEntity<Categoria> update(@PathVariable Long id, @RequestBody Categoria categoria){
         Optional<Categoria> categoriaOptional = categoriaService.update(id, categoria);
@@ -119,7 +119,7 @@ public class CategoriaController {
                     content = { @Content(mediaType = "application/json",
                             array = @ArraySchema(schema = @Schema(implementation = Message.class)))})
     })
-    @Operation(summary = "delete", description = "Borra la canción")
+    @Operation(summary = "delete", description = "Borra la categoria")
     @DeleteMapping("/{id}")
     public ResponseEntity<Categoria> delete(@PathVariable Long id){
         Optional<Categoria> categoriaOptional = categoriaService.delete(id);

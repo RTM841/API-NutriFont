@@ -57,14 +57,14 @@ public class SupermercadoController {
                     content = { @Content(mediaType = "application/json",
                             array = @ArraySchema(schema = @Schema(implementation = Message.class)))})
     })
-    @Operation(summary = "vista", description = "Devuelve una lista de las canciones por su id")
+    @Operation(summary = "vista", description = "Devuelve una lista de los supermrecados por su id")
     @GetMapping("/{id}")
     public ResponseEntity<?> view(@PathVariable Long id){
         Optional<Supermercado> supermercadoOptional = supermercadoService.findById(id);
         if(supermercadoOptional.isPresent()){
             return ResponseEntity.ok(supermercadoOptional.orElseThrow());
         }
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No se ha encontrado ninguna cancion con ese Id");
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No se ha encontrado ningun supermrecado con ese Id");
     }
 
     @ApiResponses(value = {
@@ -74,7 +74,7 @@ public class SupermercadoController {
                             array = @ArraySchema(schema = @Schema(implementation = Supermercado.class)))}),
 
             @ApiResponse(responseCode = "403",
-                    description = "No se ha creado de forma correcta la categoria",
+                    description = "No se ha creado de forma correcta el superemcado",
                     content = { @Content(mediaType = "application/json",
                             array = @ArraySchema(schema = @Schema(implementation = Message.class)))})
     })
@@ -92,7 +92,7 @@ public class SupermercadoController {
                             array = @ArraySchema(schema = @Schema(implementation = Supermercado.class)))}),
 
             @ApiResponse(responseCode = "403",
-                    description = "No se ha actualizado de forma correcta la categoria",
+                    description = "No se ha actualizado de forma correcta el supermercado",
                     content = { @Content(mediaType = "application/json",
                             array = @ArraySchema(schema = @Schema(implementation = Message.class)))})
     })
@@ -115,7 +115,7 @@ public class SupermercadoController {
                             array = @ArraySchema(schema = @Schema(implementation = Supermercado.class)))}),
 
             @ApiResponse(responseCode = "403",
-                    description = "No se ha borrado de forma correcta la categoria",
+                    description = "No se ha borrado de forma correcta el supermercado",
                     content = { @Content(mediaType = "application/json",
                             array = @ArraySchema(schema = @Schema(implementation = Message.class)))})
     })

@@ -10,18 +10,18 @@ import java.util.Optional;
 @Service
 public interface ProdcutoService {
 
-    //Buscar categoria
+    //Buscar producto
     List<Producto> findAll();
 
     //Buscar por ID
     Optional<Producto> findById(Long id);
 
-    //Añadir categoria
+    //Añadir producto
     Producto create (Producto producto);
 
-    //Actualizar categoria
+    //Actualizar producto
     Optional<Producto> update(Long id, Producto producto);
 
-    //Borrar categoria
+    //Borrar producto
     Optional<Producto> delete(Long id);
 }
